@@ -1,23 +1,31 @@
 const express = require('express')
 const router = express.Router()
 const mysql = require('mysql')
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'adbit',
+const db = mysql.createConnection({
+    user: 'u265633137_adbit',
+    host: '185.201.11.68',
+    password: 'FERNANDO@adbit.777',
+    database: 'u265633137_adbit',
 });
 
+router.post('/register', (req,res) => {
 
-router.post('/register', function(req,res){
-
-    const username = req.body.username
+    const name = req.body.name
     const password = req.body.password
+    const company = req.body.company
+    const email = req.body.email
+    
     
     db.query(
-    "INSERT INTO users (username, password) VALUES (?,?)",
-    [username,password],
-    function(err, result){
-        console.log(err);
+    "INSERT INTO usuarios (name, email, password, company) VALUES (?,?,?,?)",
+    [name,email,password,company],
+    (err, result) => {
+        if(err){
+            console.log(err)
+        } else{
+            res.send(result)
+        }
     })
 })
+
+module.exports = router

@@ -1,6 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Axios from 'axios'
 
 export default class index extends Component {
+    signUp = () => {
+        Axios.post('http://localhost:8081/api/register', {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            company: this.state.company
+        }).then((response) => {
+            console.log(response);
+        });
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            name: '',
+            email: '',
+            company: '',
+            password: '',
+        }
+    }
     render() {
         return (
             <main className="main d-flex w-100">
@@ -20,22 +42,26 @@ export default class index extends Component {
                                             <form>
                                                 <div className="form-group">
                                                     <label>Nome</label>
-                                                    <input className="form-control form-control-lg" type="text" name="name" placeholder="Coloque seu nome" />
+                                                    <input className="form-control form-control-lg" type="text" name="name" placeholder="Coloque seu nome"
+                                                     onChange={e => this.setState({name: e.target.value})} />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Site / Rede social</label>
-                                                    <input className="form-control form-control-lg" type="text" name="company" placeholder="Coloque de onde vem seu público" />
+                                                    <input className="form-control form-control-lg" type="text" name="company" placeholder="Coloque de onde vem seu público"
+                                                     onChange={e => this.setState({company: e.target.value})} />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Email</label>
-                                                    <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email" />
+                                                    <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email"
+                                                     onChange={e => this.setState({email: e.target.value})} />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Senha</label>
-                                                    <input className="form-control form-control-lg" type="password" name="password" placeholder="Coloque sua senha" />
+                                                    <input className="form-control form-control-lg" type="password" name="password" placeholder="Coloque sua senha"
+                                                     onChange={e => this.setState({password: e.target.value})} />
                                                 </div>
                                                 <div className="text-center mt-3">
-                                                    <a href="/" className="btn btn-lg btn-primary">Registrar</a>
+                                                    <a href="" className="btn btn-lg btn-primary" onClick={this.signUp} >Registrar</a>
                                                     
                                                 </div>
                                                 <small>
