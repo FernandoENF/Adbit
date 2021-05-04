@@ -3,7 +3,7 @@ const router = express.Router()
 const mysql = require('mysql')
 const db = mysql.createConnection({
     user: 'u265633137_adbit',
-    host: '185.201.11.68',
+    host: '185.201.11.65',
     password: 'FERNANDO@adbit.777',
     database: 'u265633137_adbit',
 });
