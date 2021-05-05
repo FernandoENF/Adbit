@@ -23,7 +23,7 @@ const verifyJWT = (req, res, next) => {
 }
 
 router.get('/isUserAuth', verifyJWT, (req, res)=> {
-    res.send("Autenticado")
+    res.send()
 })
 
 router.get('/login', (req, res)=> {
@@ -60,7 +60,7 @@ router.post('/login', (req, res) => {
                                 expiresIn: 300,
                             })
                             req.session.user = result
-                            res.json({auth: true, token: token })
+                            res.json({ auth: true, token: token })
                         } else {
                             res.json({ auth: false, message: "combinacao email/senha errada!" })
                         }
