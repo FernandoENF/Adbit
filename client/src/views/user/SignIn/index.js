@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useContext } from 'react'
 import Axios from 'axios'
+
 Axios.defaults.withCredentials = true;
+
 
 export default class index extends Component {
 
@@ -12,6 +14,7 @@ export default class index extends Component {
             console.log(response);
             if(response.data.auth) {
                 localStorage.setItem("token", response.data.token)
+
             }
         });
     }
