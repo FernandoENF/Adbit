@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Redirect } from 'react-router-dom';
 
-function ProtectedRoute({isAuth, component: Component, ...rest}) {
+function ProtectedRoute({ component: Component, ...rest}) {
     return (<Route {...rest} render={(props)=> {
-        if(isAuth) {
+        if(localStorage.getItem('token')) {
             return <Component/>;
         } else {
             return (

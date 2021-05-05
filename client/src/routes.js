@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import VisaoGeral from './views/app/VisaoGeral'
 import Redirecionar from './views/user/Redirecionar'
@@ -9,7 +9,6 @@ import MeusLinks from './views/app/MeusLinks'
 import Axios from 'axios'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import Home from './views/user/Home'
-import { AuthContext } from "./helpers/AuthContext"
 
 function Routes() {
     const [isAuth, setIsAuth] = useState(false);
@@ -18,6 +17,7 @@ function Routes() {
     useEffect(() => {
         if(localStorage.getItem("token")) {
             setIsAuth(true)
+            console.log(isAuth)
         }
     }, []);
 
@@ -35,13 +35,12 @@ function Routes() {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuth, setIsAuth }}>
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/">
                         <Home />
                     </Route>
-                    <ProtectedRoute path="/dashboard" component={VisaoGeral} isAuth={isAuth} />
+                    <ProtectedRoute path="/dashboard" component={VisaoGeral} />
                     <Route path="/sign-in">
                         <SignIn />
                     </Route>
@@ -51,13 +50,12 @@ function Routes() {
                     <Route path="/resetar-senha">
                         <ResetarSenha />
                     </Route>
-                    <ProtectedRoute path="/meus-links" component={MeusLinks} isAuth={isAuth} />
+                    <ProtectedRoute path="/meus-links" component={MeusLinks} />
                     <Route path="/:uri">
                         <Redirecionar />
                     </Route>
                 </Switch>
             </BrowserRouter>
-        </AuthContext.Provider>
     );
 }
 export default Routes;
