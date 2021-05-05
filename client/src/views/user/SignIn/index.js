@@ -10,6 +10,11 @@ export default class index extends Component {
             console.log(response);
         });
     }
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
     constructor(props) {
         super(props)
 
@@ -28,7 +33,7 @@ export default class index extends Component {
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="m-sm-4">
-                                            <form>
+                                            <form onSubmit={this.handleSubmit}>
                                                 <div className="form-group">
                                                     <label>Email</label>
                                                     <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email"

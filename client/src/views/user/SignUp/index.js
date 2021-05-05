@@ -13,6 +13,10 @@ export default class index extends Component {
         });
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
     constructor(props) {
         super(props)
 
@@ -39,7 +43,7 @@ export default class index extends Component {
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="m-sm-4">
-                                            <form>
+                                            <form onSubmit={this.handleSubmit}>
                                                 <div className="form-group">
                                                     <label>Nome</label>
                                                     <input className="form-control form-control-lg" type="text" name="name" placeholder="Coloque seu nome"
