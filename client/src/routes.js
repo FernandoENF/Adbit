@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import VisaoGeral from './views/app/VisaoGeral'
 import Redirecionar from './views/user/Redirecionar'
@@ -7,6 +7,7 @@ import SignUp from './views/user/SignUp'
 import ResetarSenha from './views/user/ResetarSenha'
 import MeusLinks from './views/app/MeusLinks'
 import Axios from 'axios'
+import ProtectedRoute from './components/common/ProtectedRoute'
 
 function Routes() {
     useEffect(() => {
@@ -14,13 +15,12 @@ function Routes() {
             console.log(response)
         });
     }, []);
-    
+
+    const [isAuth, setIsAuth] = useState(false);
     return(
     <BrowserRouter>
         <Switch>
-            <Route exact path="/">
-                <VisaoGeral/>
-            </Route>
+            <ProtectedRoute exact path="/" component={VisaoGeral} isAuth={isAuth}/>
             <Route path="/sign-in">
                 <SignIn/>
             </Route>
@@ -30,9 +30,7 @@ function Routes() {
             <Route path="/resetar-senha">
                 <ResetarSenha/>
             </Route>
-            <Route path="/meus-links">
-                <MeusLinks/>
-            </Route>
+            <ProtectedRoute path="/meus-links" component={MeusLinks} isAuth={isAuth}/>
             <Route path="/:uri">
                 <Redirecionar/>
             </Route>
