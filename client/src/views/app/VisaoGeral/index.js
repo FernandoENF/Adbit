@@ -6,7 +6,6 @@ export default class index extends Component {
     render() {
         return (
             <Layout>
-
                 <div className="container-fluid p-0">
                     <div className="row">
                         <Encurtador/>

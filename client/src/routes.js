@@ -8,6 +8,7 @@ import ResetarSenha from './views/user/ResetarSenha'
 import MeusLinks from './views/app/MeusLinks'
 import Axios from 'axios'
 import ProtectedRoute from './components/common/ProtectedRoute'
+import Home from './views/user/Home'
 
 function Routes() {
     useEffect(() => {
@@ -17,25 +18,28 @@ function Routes() {
     }, []);
 
     const [isAuth, setIsAuth] = useState(false);
-    return(
-    <BrowserRouter>
-        <Switch>
-            <ProtectedRoute exact path="/" component={VisaoGeral} isAuth={isAuth}/>
-            <Route path="/sign-in">
-                <SignIn/>
-            </Route>
-            <Route path="/sign-up">
-                <SignUp/>
-            </Route>
-            <Route path="/resetar-senha">
-                <ResetarSenha/>
-            </Route>
-            <ProtectedRoute path="/meus-links" component={MeusLinks} isAuth={isAuth}/>
-            <Route path="/:uri">
-                <Redirecionar/>
-            </Route>
-        </Switch>
-    </BrowserRouter>
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <ProtectedRoute path="/dashboard" component={VisaoGeral} isAuth={isAuth} />
+                <Route path="/sign-in">
+                    <SignIn />
+                </Route>
+                <Route path="/sign-up">
+                    <SignUp />
+                </Route>
+                <Route path="/resetar-senha">
+                    <ResetarSenha />
+                </Route>
+                <ProtectedRoute path="/meus-links" component={MeusLinks} isAuth={isAuth} />
+                <Route path="/:uri">
+                    <Redirecionar />
+                </Route>
+            </Switch>
+        </BrowserRouter>
     );
 }
 export default Routes;
