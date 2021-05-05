@@ -1,7 +1,8 @@
 const express = require('express');
-const { getConnection } = require('./connection');
 const router = express.Router()
 const pool = require('./connection')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
 router.post('/register', (req,res) => {
 
@@ -10,22 +11,24 @@ router.post('/register', (req,res) => {
     const company = req.body.company
     const email = req.body.email
     
-    pool.getConnection((err, db) => {
-        if(err) {
-            res.send({ err: err })
+    pool.getConnection((error, db) => {
+        if(error) {
+            console.log(error)
         } else {
-        db.query(
-        "INSERT INTO usuarios (name, email, password, company) VALUES (?,?,?,?)",
-        [name,email,password,company],
-        (err, result) => {
-            if(err){
-                res.send({ err: err })
-            } else{
-                res.send(result)
+        bcrypt.hash(password, saltRounds, (err, hash) => {
+            if(err) {
+                console.log(err)
             }
-        })}
+            db.query(
+            "INSERT INTO usuarios (name, email, password, company) VALUES (?,?,?,?)",
+            [name,email,hash,company],
+            (errr, result) => {
+                console.log(errr)
+            })
+        })
+        }
         db.release();
     })
-    });
+});
 
 module.exports = router
