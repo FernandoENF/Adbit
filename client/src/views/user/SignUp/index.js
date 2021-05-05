@@ -61,7 +61,7 @@ export default class index extends Component {
                                                      onChange={e => this.setState({password: e.target.value})} />
                                                 </div>
                                                 <div className="text-center mt-3">
-                                                    <a href="" className="btn btn-lg btn-primary" onClick={this.signUp} >Registrar</a>
+                                                    <button className="btn btn-lg btn-primary" onClick={this.signUp} >Registrar</button>
                                                     
                                                 </div>
                                                 <small>

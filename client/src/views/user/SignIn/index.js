@@ -1,6 +1,23 @@
 import React, { Component } from 'react'
+import Axios from 'axios'
 
 export default class index extends Component {
+    login = () => {
+        Axios.post('http://localhost:8081/api/login', {
+            email: this.state.email,
+            password: this.state.password,
+        }).then((response) => {
+            console.log(response);
+        });
+    }
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            email: '',
+            password: '',
+        }
+    }
     render() {
         return (
             <main className="main d-flex w-100">
@@ -14,11 +31,13 @@ export default class index extends Component {
                                             <form>
                                                 <div className="form-group">
                                                     <label>Email</label>
-                                                    <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email" />
+                                                    <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email"
+                                                     onChange={e => this.setState({email: e.target.value})} />
                                                 </div>
                                                 <div className="form-group">
                                                     <label>Senha</label>
-                                                    <input className="form-control form-control-lg" type="password" name="password" placeholder="Coloque sua senha" />
+                                                    <input className="form-control form-control-lg" type="password" name="password" placeholder="Coloque sua senha"
+                                                     onChange={e => this.setState({password: e.target.value})} />
                                                     <small>
                                                         <a href="/resetar-senha">Esqueci minha senha</a>
                                                     </small>
@@ -30,8 +49,7 @@ export default class index extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="text-center mt-3">
-
-                                                    <a href="/" className="btn btn-lg btn-primary">Entrar</a>
+                                                    <button className="btn btn-lg btn-primary" onClick={this.login}>Entrar</button>
                                                 </div>
                                                 <div className="text-center mt-3">
                                                     <a href="/sign-up" className="btn btn-sm btn-primary">Criar conta</a>
