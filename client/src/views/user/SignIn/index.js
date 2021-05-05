@@ -1,14 +1,29 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+Axios.defaults.withCredentials = true;
 
 export default class index extends Component {
+
     login = () => {
         Axios.post('http://localhost:8081/api/login', {
             email: this.state.email,
             password: this.state.password,
         }).then((response) => {
             console.log(response);
+            if(response.data.auth) {
+                localStorage.setItem("token", response.data.token)
+            }
         });
+    }
+
+    userAuth = () => {
+        Axios.get('http://localhost:8081/api/isUserAuth', {
+            headers: {
+                "adbit-acess-token": localStorage.getItem("token"),
+            },
+        }).then((response) => {
+            console.log(response)
+        })
     }
 
     handleSubmit(event) {
