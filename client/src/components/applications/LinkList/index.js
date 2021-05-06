@@ -6,7 +6,7 @@ export default function LinkItem (props){
       return (
         <tr>
             <td>{props.id}</td>
-            <td>link.com/{props.uri}</td>
+            <td>{process.env.REACT_APP_ROOT_PATH}/{props.uri}</td>
             <td>0</td>
             <td>R$ 0</td>
             <td>{ndata}</td>
