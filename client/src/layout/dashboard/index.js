@@ -10,7 +10,7 @@ export class index extends Component {
             <div className="wrapper">
                 <nav id="sidebar" className="sidebar">
                     <div className="sidebar-content ">
-                        <a className="sidebar-brand" href="index.html">
+                        <a className="sidebar-brand" href="/">
                             <i className="align-middle" data-feather="box" />
                             <span className="align-middle">Adbit</span>
                         </a>
