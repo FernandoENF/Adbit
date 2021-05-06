@@ -12,7 +12,7 @@ export default class index extends Component {
             }
         }).then((response) => {
             this.setState({
-                encurtado: 'link.com/'+response.data.message
+                encurtado: process.env.REACT_APP_ROOT_PATH+'/'+response.data.message
             })
         });
     }
