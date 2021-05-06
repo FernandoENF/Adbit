@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const pool = require('./connection')
-const { validateToken } = require('../middleware/AuthMiddleware')
+const { validateToken } = require('../middleware/AuthMiddleware');
+const { response } = require('express');
 
 function makeid(length) {
     var result           = '';
@@ -50,19 +51,20 @@ router.post('/links/novoLink', validateToken, (req,res) => {
     res.json({ message: uri })
 })
 
-router.get('/links/redirecionar', (req,res) => {
+router.post('/links/redirecionar', (req,res) => {
     const uri = req.body.uri
+    console.log(uri)
     pool.getConnection((error,db) => {
         db.query(
             "SELECT url, uri FROM links WHERE uri = ?;",
             uri,
-            (err, result) => {
-                if(err){
-                    console.log(err)
-                } else {
-                    res.json({ url: result.url , uri: result.uri })
+            (error, result) => {
+                if(result){
+                    if(result[0] == !undefined){
+                    res.json({ url: result[0].url})}
+                    res.json({ error: 'Pagina não encontrada!'})
                 }
-            }
+                }
         )
         db.release()
     })
