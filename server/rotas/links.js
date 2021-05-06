@@ -60,12 +60,17 @@ router.post('/links/redirecionar', (req,res) => {
             uri,
             (error, result) => {
                 if(result){
-                    if(result[0] == !undefined){
-                    res.json({ url: result[0].url})}
+                        if(result[0] != undefined){
+                            res.json({ url: result[0].url})}
+                        else {
+                            res.json({ error: 'Nao encontrado!'})
+                        }
+                    }
+                    else {
                     res.json({ error: 'Pagina não encontrada!'})
+                    }
                 }
-                }
-        )
+            )
         db.release()
     })
 })
