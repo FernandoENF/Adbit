@@ -1,7 +1,31 @@
+import Axios from 'axios';
 import React, { Component } from 'react'
+import LinkItem from '../../../components/applications/LinkList';
 import Layout from '../../../layout/dashboard'
 
 export default class index extends Component {
+    componentDidMount(){
+        const listLinks = () => {
+        Axios.get('http://localhost:8081/api/links',{
+            headers: {
+                adbitAcessToken: localStorage.getItem('token'),
+            }
+        }).then((response) => {
+            console.log(response);
+            this.setState({
+                items: response.data
+            })
+        })}
+        listLinks()
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = { items: []};
+    }
+
+
     render() {
         return (
             <Layout>
@@ -23,27 +47,9 @@ export default class index extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>link.com/encurtado</td>
-                                        <td>12.343</td>
-                                        <td>R$ 61</td>
-                                        <td>02/04/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td>link.com/encurtado</td>
-                                        <td>2.771</td>
-                                        <td>R$ 12</td>
-                                        <td>04/04/2021</td>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>link.com/encurtado</td>
-                                        <td>76.987</td>
-                                        <td>R$ 523</td>
-                                        <td>23/01/2021</td>
-                                    </tr>
+                                    {this.state.items.map((item, index) => (
+                                    <LinkItem key={index} id ={index+1} uri={item.uri} data={item.data}></LinkItem>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

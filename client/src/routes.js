@@ -11,29 +11,7 @@ import ProtectedRoute from './components/common/ProtectedRoute'
 import Home from './views/user/Home'
 
 function Routes() {
-    const [isAuth, setIsAuth] = useState(false);
     
-
-    useEffect(() => {
-        if(localStorage.getItem("token")) {
-            setIsAuth(true)
-            console.log(isAuth)
-        }
-    }, []);
-
-    const userAuth = () => {
-        Axios.get('http://localhost:8081/api/isUserAuth', {
-            headers: {
-                "adbit-acess-token": localStorage.getItem("token"),
-            },
-        }).then((response) => {
-            if(response.data === true){
-                setIsAuth(true)
-            }
-            console.log(response)
-        })
-    }
-
     return (
             <BrowserRouter>
                 <Switch>

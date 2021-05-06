@@ -1,6 +1,35 @@
 import React, { Component } from 'react'
+import Axios from 'axios'
 
 export default class index extends Component {
+    encurtar = () => {
+        Axios.post('http://localhost:8081/api/links/novoLink', {
+            url: this.state.link,
+        },
+        {
+            headers: {
+                adbitAcessToken: localStorage.getItem('token'),
+            }
+        }).then((response) => {
+            this.setState({
+                encurtado: 'link.com/'+response.data.message
+            })
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            link: '',
+            encurtado: 'link.com/encurtado',
+        }
+    }
+
 
     render() {
         return (
@@ -10,14 +39,15 @@ export default class index extends Component {
                         <h5 className="card-title mb-0">Encurtar Link</h5>
                     </div>
                     <div className="card-body p-1">
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2 col-sm-10">
-                                <input class="form-control form-control-lg w-100" type="text" placeholder="Cole seu link aqui" />
+                        <form className="form-inline" onSubmit={this.handleSubmit}>
+                            <div className="form-group mx-sm-3 mb-2 col-sm-10">
+                                <input className="form-control form-control-lg w-100" type="text" placeholder="Cole seu link aqui"
+                                 onChange={e => this.setState({link: e.target.value})} />
                             </div>
-                            <button type="submit" class="btn btn-primary mb-2">Encurtar</button>
+                            <button type="submit" class="btn btn-primary mb-2" onClick={this.encurtar}>Encurtar</button>
                         </form>
-                        <div class="input-group-append mx-sm-3 mb-2 col-sm-10">
-                            <span class="input-group-text w-50" id="basic-addon2">link.com/encurtado</span>
+                        <div className="input-group-append mx-sm-3 mb-2 col-sm-10">
+                            <span className="input-group-text w-50" id="basic-addon2">{this.state.encurtado}</span>
                         </div>
                     </div>
                 </div>
