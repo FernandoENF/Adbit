@@ -20,7 +20,7 @@ export default class index extends Component {
                             <a className="nav-link" href="/">Contato</a>
                         </li>
                     </ul>
-                    <a href="/sign-in" target="_blank" className="btn btn-primary my-2 my-sm-0 ml-2">Entrar / Registrar</a>
+                    <a href="/sign-in" className="btn btn-primary my-2 my-sm-0 ml-2">Entrar / Registrar</a>
                 </nav>
                 <section className="landing-intro pt-5">
                     <div className="container">
