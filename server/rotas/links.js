@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const pool = require('./connection')
-const jwt = require('jsonwebtoken')
 const { validateToken } = require('../middleware/AuthMiddleware')
 
 function makeid(length) {
@@ -49,6 +48,24 @@ router.post('/links/novoLink', validateToken, (req,res) => {
         db.release()
     })
     res.json({ message: uri })
+})
+
+router.get('/links/redirecionar', (req,res) => {
+    const uri = req.body.uri
+    pool.getConnection((error,db) => {
+        db.query(
+            "SELECT url, uri FROM links WHERE uri = ?;",
+            uri,
+            (err, result) => {
+                if(err){
+                    console.log(err)
+                } else {
+                    res.json({ url: result.url , uri: result.uri })
+                }
+            }
+        )
+        db.release()
+    })
 })
 
 module.exports = router;
