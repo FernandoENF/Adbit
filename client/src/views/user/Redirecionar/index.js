@@ -4,7 +4,6 @@ import {
     Switch,
     Route,
     useParams,
-    Redirect
 } from "react-router-dom";
 import Axios from 'axios';
 
