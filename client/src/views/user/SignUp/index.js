@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Axios from 'axios'
+import { withRouter } from 'react-router-dom';
 
-export default class index extends Component {
+
+class signUp extends Component {
     signUp = () => {
         Axios.post('http://localhost:8081/api/register', {
             name: this.state.name,
@@ -9,7 +11,8 @@ export default class index extends Component {
             password: this.state.password,
             company: this.state.company
         }).then((response) => {
-            console.log(response);
+            alert(response.data.message)
+            this.props.history.push("/sign-in");
         });
     }
 
@@ -84,3 +87,5 @@ export default class index extends Component {
         )
     }
 }
+
+export default withRouter(signUp);

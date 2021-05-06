@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import VisaoGeral from './views/app/VisaoGeral'
 import Redirecionar from './views/user/Redirecionar'
@@ -6,15 +6,15 @@ import SignIn from './views/user/SignIn'
 import SignUp from './views/user/SignUp'
 import ResetarSenha from './views/user/ResetarSenha'
 import MeusLinks from './views/app/MeusLinks'
-import Axios from 'axios'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import Home from './views/user/Home'
 import P404 from './views/user/Pagina404'
+import history from './views/user/History'
 
 function Routes() {
     
     return (
-            <BrowserRouter>
+            <BrowserRouter history={history} >
                 <Switch>
                     <Route exact path="/">
                         <Home />

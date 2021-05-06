@@ -23,7 +23,11 @@ router.post('/register', (req,res) => {
             "INSERT INTO usuarios (name, email, password, company) VALUES (?,?,?,?)",
             [name,email,hash,company],
             (errr, result) => {
-                console.log(errr)
+                if(errr){
+                console.log(errr)}
+                if(result){
+                res.json({ message: "Registrado com sucesso!" })
+                }
             })
         })
         }
