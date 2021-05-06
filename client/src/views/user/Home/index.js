@@ -32,7 +32,7 @@ export default class index extends Component {
                                         <h1 className="text-white my-4">O Adbit é um Encurtador de links que possibilita a monetização  através de anúncios nos links encurtados</h1>
                                         <p className="text-muted lead">Ganhe dinheiro encurtando links com nossa de rede de patrocinadores premium.</p>
                                         <div className="my-4">
-                                            <a target="" href="/sign-up" target="_blank" className="btn btn-light btn-lg mr-1">Criar conta grátis</a>
+                                            <a target="" href="/sign-up" className="btn btn-light btn-lg mr-1">Criar conta grátis</a>
                                             <a href="/"  className="btn btn-outline-light btn-lg">Saber mais</a>
                                         </div>
                                     </div>
