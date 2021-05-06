@@ -9,6 +9,7 @@ import MeusLinks from './views/app/MeusLinks'
 import Axios from 'axios'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import Home from './views/user/Home'
+import P404 from './views/user/Pagina404'
 
 function Routes() {
     
@@ -27,6 +28,9 @@ function Routes() {
                     </Route>
                     <Route path="/resetar-senha">
                         <ResetarSenha />
+                    </Route>
+                    <Route path="/404">
+                        <P404 />
                     </Route>
                     <ProtectedRoute path="/meus-links" component={MeusLinks} />
                     <Route path="/:uri">
