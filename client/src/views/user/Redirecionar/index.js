@@ -7,6 +7,7 @@ import {
     Redirect
 } from "react-router-dom";
 import Axios from 'axios';
+import P404 from '../Pagina404'
 
 
 function Child() {
@@ -16,7 +17,10 @@ function Child() {
         Axios.post('http://localhost:8081/api/links/redirecionar', {
             uri: uri,
         }).then((response) => {
-            if(response.data.error){
+            if (response.data.error) {
+                <Route>
+                    <P404 />
+                </Route>
                 window.location.replace("https://www.google.com")
             } else {
                 window.location.replace(response.data.url);
@@ -24,11 +28,11 @@ function Child() {
         });
     }
     redirect()
-    return(
+    return (
         <div></div>
     )
-    }
-    export default function Params() {
+}
+export default function Params() {
     return (
         <Router>
             <Switch>
