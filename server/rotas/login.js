@@ -41,11 +41,11 @@ router.post('/login', (req, res) => {
                             req.session.user = result
                             res.json({ auth: true, token: token })
                         } else {
-                            res.json({ auth: false, message: "combinacao email/senha errada!" })
+                            res.json({ auth: false, error: "combinacao email/senha errada!" })
                         }
                     })
                 } else {
-                    res.send({  auth: false, message: "Essa conta nao existe!" })
+                    res.send({  auth: false, error: "Essa conta nao existe!" })
                 }
             }
         )

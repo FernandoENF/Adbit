@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import Axios from 'axios'
 
 
@@ -6,14 +7,18 @@ export default function SignIn() {
     Axios.defaults.withCredentials = true;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let history = useHistory();
     const login = () => {
         Axios.post('http://localhost:8081/api/login', {
             email: email,
             password: password,
         }).then((response) => {
-            console.log(response);
+            if(response.data.error){
+                alert(response.data.error);
+            }
             if (response.data.auth) {
                 localStorage.setItem("token", response.data.token)
+                history.push('/dashboard')
             }
         });
     }
