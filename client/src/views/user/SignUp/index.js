@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 class signUp extends Component {
     signUp = () => {
-        Axios.post('http://localhost:8081/api/register', {
+        Axios.post('https://adbit-app.herokuapp.com/api/register', {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,

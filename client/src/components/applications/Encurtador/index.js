@@ -3,7 +3,7 @@ import Axios from 'axios'
 
 export default class index extends Component {
     encurtar = () => {
-        Axios.post('http://localhost:8081/api/links/novoLink', {
+        Axios.post('https://adbit-app.herokuapp.com/api/links/novoLink', {
             url: this.state.link,
         },
         {

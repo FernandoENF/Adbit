@@ -6,7 +6,7 @@ import Layout from '../../../layout/dashboard'
 export default class index extends Component {
     componentDidMount(){
         const listLinks = () => {
-        Axios.get('http://localhost:8081/api/links',{
+        Axios.get('https://adbit-app.herokuapp.com/api/links',{
             headers: {
                 adbitAcessToken: localStorage.getItem('token'),
             }

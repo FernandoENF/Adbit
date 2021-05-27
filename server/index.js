@@ -9,6 +9,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 dotenv.config()
 
+const PORT = 8081
+
 app.use(cors({
     origin: ["http://localhost:3000"],
     methods: ["GET", "POST"],
@@ -32,6 +34,6 @@ app.use('/api',rotas)
 
 app.use(express.static(__dirname+'/cliente'))
 
-app.listen(8081,function(){
-    console.log("Servidor Rodando na url http://localhost:8081")
+app.listen(process.env.PORT || PORT,function(){
+    console.log("Servidor Rodando na url")
 })

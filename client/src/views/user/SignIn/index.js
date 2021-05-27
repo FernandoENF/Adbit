@@ -9,7 +9,7 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     let history = useHistory();
     const login = () => {
-        Axios.post('http://localhost:8081/api/login', {
+        Axios.post('https://adbit-app.herokuapp.com/api/login', {
             email: email,
             password: password,
         }).then((response) => {

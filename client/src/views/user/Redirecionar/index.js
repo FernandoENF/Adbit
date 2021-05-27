@@ -12,7 +12,7 @@ function Child() {
     let { uri } = useParams();
     console.log(uri)
     const redirect = () => {
-        Axios.post('http://localhost:8081/api/links/redirecionar', {
+        Axios.post('https://adbit-app.herokuapp.com/api/links/redirecionar', {
             uri: uri,
         }).then((response) => {
             if (response.data.error) {
